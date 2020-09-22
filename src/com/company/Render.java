@@ -8,24 +8,55 @@ public class Render {
 
 
     //Стоит начать с этого
-    public static void renderTriangle(BufferedImage img, int x1, int y1, int x2, int y2, int x3, int y3){
+    public static void renderTriangle(BufferedImage img, int x1, int y1, int x2, int y2, int x3, int y3) {
         for (int i = 0; i < img.getWidth(); i++) {
             for (int j = 0; j < img.getHeight(); j++) {
-                double  A = (x1-i)*(y2-y1)-(x2-x1)*(y1-j);
-                double B = (x2-i)*(y3-y2)-(x3-x2)*(y2-j);
-               double C = (x3-i)*(y1-y3)-(x1-x3)*(y3-j);
-                if(Math.signum(A)==Math.signum(B) && Math.signum(B)==Math.signum(C)){
-                    img.setRGB(i, j, new Color(0, 0, 0).getRGB());
+                double A = (x1 - i) * (y2 - y1) - (x2 - x1) * (y1 - j);
+                double B = (x2 - i) * (y3 - y2) - (x3 - x2) * (y2 - j);
+                double C = (x3 - i) * (y1 - y3) - (x1 - x3) * (y3 - j);
+                if (Math.signum(A) == Math.signum(B) && Math.signum(B) == Math.signum(C)) {
+                    int a= (int) A;
+                    a=(a%255+255)%255;
+                    int b= (int) B;
+                    b=(b%255+255)%255;
+                    int c= (int) C;
+                    c=(c%255+255)%255;
+                    img.setRGB(i, j, new Color(a, b, c).getRGB());
                 }
-                if((A==0)&&(B==0)&&(C==0)){
-                    img.setRGB(i, j, new Color(0, 0, 0).getRGB());
+                if ((A == 0) && (B == 0) && (C == 0)) {
+                    int a= (int) A;
+                    a=(a%255+255)%255;
+                    int b= (int) B;
+                    b=(b%255+255)%255;
+                    int c= (int) C;
+                    c=(c%255+255)%255;
+                    img.setRGB(i, j, new Color(a, b, c).getRGB());
                 }
             }
         }
     }
 
+    public static double [] vectors(int x[], double y[]) {
 
-        /*if (x1 > x2) {
+        double z[] = new double[3];
+        for (int i = 0; i < 3; i++) {
+            z[i] = x[i] + y[i];
+        }
+        return  z;
+    }
+
+    public static double[] vectorm(double x[], double y[])
+    {
+        double z[] = new double[3];
+        z[0]=x[2]*y[1]-x[1]*y[2];
+        z[1]=x[0]*y[2]-x[2]*y[0];
+        z[2]=x[1]*y[0]-x[0]*y[1];
+        return z;
+    }
+}
+
+
+       /* if (x1 > x2) {
             if (y1 > y2) {
                 if ((x1 - x2) > (y1 - y2)) {
                     for (int i = x2; i < x1; i++) {
@@ -95,4 +126,4 @@ public class Render {
             }
             }
             }*/
-        }
+

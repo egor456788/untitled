@@ -30,8 +30,19 @@ public class Main extends JFrame {
 
     public static void draw(Graphics2D g) {
         BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-        double x1=270,x2=300,x3=150,y1=345,y2=280,y3=160;
+        int x1=270,x2=300,x3=150,y1=345,y2=280,y3=160;
         int h=0;
+        for(int i=1;i<16;i++)
+        {
+            x1=(x1*i)%1366;
+            x2=(x2*i)%1366;
+            x3=(x3*i)%1366;
+            y1=(y1*i)%768;
+            y2=(y2*i)%768;
+            y3=(y3*i)%768;
+            Render.renderTriangle(img, x1, y1, x2, y2, x3,y3);
+            System.out.println(h);
+        }
         Render.renderTriangle(img, 1366, 500, 500, 300, 400,400);
         System.out.println(h);
         //Создаем буффер в который рисуем кадр.
