@@ -32,7 +32,7 @@ public class Main extends JFrame {
         BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
         double x1=270,x2=300,x3=150,y1=345,y2=280,y3=160;
         int h=0;
-        Render.renderTriangle(img, 1366, 500, 500, 300, 400,400,786,0,0);
+        Render.renderTriangle(img, 1366, 500, 500, 300, 400,400);
         System.out.println(h);
         //Создаем буффер в который рисуем кадр.
 
