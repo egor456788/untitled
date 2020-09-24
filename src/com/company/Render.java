@@ -14,22 +14,25 @@ public class Render {
                 double A = (x1 - i) * (y2 - y1) - (x2 - x1) * (y1 - j);
                 double B = (x2 - i) * (y3 - y2) - (x3 - x2) * (y2 - j);
                 double C = (x3 - i) * (y1 - y3) - (x1 - x3) * (y3 - j);
-                if (Math.signum(A) == Math.signum(B) && Math.signum(B) == Math.signum(C)) {
+                A=A/C;
+                B=B/C;
+                C=1-A-B;
+                if (0<A && 1>A && 0<B && 1>B && 1>C && 0<C) {
+                    A=A*255;
+                    B=B*255;
+                    C=C*255;
                     int a= (int) A;
-                    a=(a%255+255)%255;
                     int b= (int) B;
-                    b=(b%255+255)%255;
                     int c= (int) C;
-                    c=(c%255+255)%255;
                     img.setRGB(i, j, new Color(a, b, c).getRGB());
                 }
                 if ((A == 0) && (B == 0) && (C == 0)) {
+                    A=A*255;
+                    B=B*255;
+                    C=C*255;
                     int a= (int) A;
-                    a=(a%255+255)%255;
                     int b= (int) B;
-                    b=(b%255+255)%255;
                     int c= (int) C;
-                    c=(c%255+255)%255;
                     img.setRGB(i, j, new Color(a, b, c).getRGB());
                 }
             }
@@ -52,6 +55,14 @@ public class Render {
         z[1]=x[0]*y[2]-x[2]*y[0];
         z[2]=x[1]*y[0]-x[0]*y[1];
         return z;
+    }
+    public static double[] vectorsc(double x[], double y)
+    {
+        for(int i=0;i<3;i++)
+        {
+            x[i]=x[i]*y;
+        }
+        return x;
     }
 }
 
