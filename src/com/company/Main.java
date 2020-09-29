@@ -72,6 +72,7 @@ int k=0;
         double vn[][] = new double[1000][3];
         double vt[][] = new double[1000][3];
         double f[][]= new double[1000][3];
+       int ff[]=new int [3];
         int kk=0;
         for(String l : readUsingScanner(fileName)){
             k++;
@@ -144,33 +145,30 @@ int k=0;
                     kk=kk+1;
                     String s="";
                     int qq=0;
+                    int ss=0;
                     for(int i=2;i<l.length();i++)
                     {
-                        if(l.charAt(i)!=' ')
+                        if(l.charAt(i)!=' ' && l.charAt(i)!='/')
                         {
                             s=s+l.charAt(i);
                         }
-                        else
+                        if(l.charAt(i)=='/')
                         {
-                            f[kk][qq]=Double.parseDouble(s);
-
-                            s="";
+                            if(qq==0) {
+                                 ff[ss] = Integer.parseInt(s);
+                            }
                             qq=qq+1;
                         }
+                        if(l.charAt(i)==' ')
+                            ss=ss+1;
                     }
-                    f[kk][qq]=Double.parseDouble(s);
-                    s="";
-                    qq=qq+1;
+                    int hh=ff[ss];
+                    double x4=u[hh][0];
+
                 }
             }
         }
-        for(int i=0; i<563;i++)
-        {
-            for(int j=0;j<3;j++) {
-                System.out.println(u[i][j]);
-                System.out.println(f[i][j]);
-            }
-        }
+
 
       //  Render.renderTriangle(img, 1366, 500, 500, 300, 400,400);
 
