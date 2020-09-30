@@ -52,19 +52,7 @@ public class Main extends JFrame {
     public static void draw(Graphics2D g) throws IOException {
         String fileName= "/Users/Admin/Desktop/rer.txt";
         BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-        int x1=270,x2=300,x3=150,y1=345,y2=280,y3=160;
-        int h=0;
-        for(int i=1;i<16;i++)
-        {
-            x1=(x1*i)%1366;
-            x2=(x2*i)%1366;
-            x3=(x3*i)%1366;
-            y1=(y1*i)%768;
-            y2=(y2*i)%768;
-            y3=(y3*i)%768;
-            Render.renderTriangle(img, x1, y1, x2, y2, x3,y3);
-        }
-        Render.renderTriangle(img, 1366, 500, 500, 300, 400,400);
+
 //        String s="0";
 //        s= readUsingScanner(fileName);
 int k=0;
@@ -148,6 +136,7 @@ int k=0;
                     int ss=0;
                     for(int i=2;i<l.length();i++)
                     {
+
                         if(l.charAt(i)!=' ' && l.charAt(i)!='/')
                         {
                             s=s+l.charAt(i);
@@ -159,12 +148,26 @@ int k=0;
                             }
                             qq=qq+1;
                         }
-                        if(l.charAt(i)==' ')
-                            ss=ss+1;
+                        if(l.charAt(i)==' ') {
+                            ss = ss + 1;
+                            s="";
+                            qq=0;
+                        }
                     }
-                    int hh=ff[ss];
-                    double x4=u[hh][0];
+                    int hh=ff[0];
+                    System.out.println(hh);
+                    double x4=u[hh][0]+300;
+                    double y4=u[hh][1]+300;
+                     hh=ff[1];
+                    System.out.println(hh);
+                    double x5=u[hh][0]+300;
+                    double y5=u[hh][1]+300;
+                     hh=ff[2];
+                    System.out.println(hh);
+                    double x6=u[hh][0]+300;
+                    double y6=u[hh][1]+300;
 
+                    Render.renderTriangle(img, x4, y4, x5, y5, x6,y6);
                 }
             }
         }
