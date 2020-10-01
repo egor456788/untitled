@@ -9,33 +9,19 @@ public class Render {
 
     //Стоит начать с этого
     public static void renderTriangle(BufferedImage img, double x1, double y1, double x2, double y2, double x3, double y3) {
-        for (int i = 0; i < img.getWidth(); i++) {
-            for (int j = 0; j < img.getHeight(); j++) {
-                double A = (x1 - i) * (y2 - y1) - (x2 - x1) * (y1 - j);
-                double B = (x2 - i) * (y3 - y2) - (x3 - x2) * (y2 - j);
-                double C = (x3 - i) * (y1 - y3) - (x1 - x3) * (y3 - j);
-
-                A=A/C;
-                B=B/C;
-                C=1-A-B;
-
-                if (0<A && 1>A && 0<B && 1>B && 1>C && 0<C) {
-                    A=A*255;
-                    B=B*255;
-                    C=C*255;
-                    int a= (int) A;
-                    int b= (int) B;
-                    int c= (int) C;
-                    img.setRGB(i, j, new Color(a, b, c).getRGB());
-                }
-                if ((A == 0) && (B == 0) && (C == 0)) {
-                    A=A*255;
-                    B=B*255;
-                    C=C*255;
-                    int a= (int) A;
-                    int b= (int) B;
-                    int c= (int) C;
-                    img.setRGB(i, j, new Color(a, b, c).getRGB());
+        {
+            for (int i = 0; i < img.getWidth(); i++) {
+                for (int j = 0; j < img.getHeight(); j++) {
+                    double A = (x1-i)*(y2-y1)-(x2-x1)*(y1-j);
+                    double B = (x2-i)*(y3-y2)-(x3-x2)*(y2-j);
+                    double C = (x3-i)*(y1-y3)-(x1-x3)*(y3-j);
+                    if(Math.signum(A)==Math.signum(B) && Math.signum(B)==Math.signum(C)){
+                        System.out.println(6);
+                        img.setRGB(i, j, new Color(0, 0, 0).getRGB());
+                    }
+                    if((A==0)&&(B==0)&&(C==0)){
+                        img.setRGB(i, j, new Color(0, 0, 0).getRGB());
+                    }
                 }
             }
         }
