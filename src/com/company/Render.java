@@ -8,18 +8,23 @@ public class Render {
 
 
     //Стоит начать с этого
-    public static void renderTriangle(BufferedImage img, double x1, double y1, double x2, double y2, double x3, double y3) {
+    public static void renderTriangle(BufferedImage img, double x1, double y1, double x2, double y2, double x3, double y3,double x4, double y4, double x5, double y5, double x6, double y6) {
         {
             for (int i = 0; i < img.getWidth(); i++) {
                 for (int j = 0; j < img.getHeight(); j++) {
                     double A = (x1-i)*(y2-y1)-(x2-x1)*(y1-j);
                     double B = (x2-i)*(y3-y2)-(x3-x2)*(y2-j);
                     double C = (x3-i)*(y1-y3)-(x1-x3)*(y3-j);
-                    if(Math.signum(A)==Math.signum(B) && Math.signum(B)==Math.signum(C)){
-                        System.out.println(6);
-                        img.setRGB(i, j, new Color(0, 0, 0).getRGB());
+                    A=A/C;
+                    B=B/C;
+                    C=1-A-B;
+
+                    if(0<A  && 1>A && 0<B && 1>B && 0<C && 1>C){
+                       // System.out.println(i +" "+j);
+                        img.setRGB(i, j, new Color(198, 57, 57).getRGB());
                     }
                     if((A==0)&&(B==0)&&(C==0)){
+                       // System.out.println(i +" "+j+" p");
                         img.setRGB(i, j, new Color(0, 0, 0).getRGB());
                     }
                 }

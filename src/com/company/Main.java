@@ -56,14 +56,15 @@ public class Main extends JFrame {
 //        String s="0";
 //        s= readUsingScanner(fileName);
 int k=0;
-        double u[][] = new double[1000][3];
-        double vn[][] = new double[1000][3];
-        double vt[][] = new double[1000][3];
-        double f[][]= new double[1000][3];
-       int ff[]=new int [3];
+        double u[][] = new double[10000][3];
+        double vn[][] = new double[10000][3];
+        double vt[][] = new double[10000][3];
+        double f[][]= new double[10000][3];
+
         int kk=0;
         int kkk=0;
         for(String l : readUsingScanner(fileName)){
+
             k++;
             l.split(" ");
             if(l.length()!=0) {
@@ -129,6 +130,7 @@ int k=0;
 
                 }
                 if (l.charAt(0) == 'f' && l.charAt(1)==' ') {
+                    double x1 = 0,x2=0,x3=0,x4 = 0,x5=0,x6=0,y1=0,y2=0,y3=0,y4=0,y5=0,y6=0;
                     kk=kk+1;
                     String s="";
                     int qq=0;
@@ -144,7 +146,87 @@ int k=0;
                         if(l.charAt(i)=='/')
                         {
                             if(qq==0) {
-                                 ff[ss] = Integer.parseInt(s);
+                                 if(ss==0)
+                                 {
+                                     int hh=Integer.parseInt(s);s="";
+                                      x4=u[hh][0]+300;
+                                     y4=u[hh][1]+300;
+                                      x1=vn[hh][0]+300;
+                                    y1=vn[hh][1]+300;
+                                 }
+                                 if(ss==1)
+                                 {
+                                     int hh=Integer.parseInt(s);s="";
+                                      x5=u[hh][0]+300;
+                                      y5=u[hh][1]+300;
+                                      x2=vn[hh][0]+300;
+                                     y2=vn[hh][1]+300;
+                                 }
+                                 if(ss==2)
+                                 {
+                                     int hh=Integer.parseInt(s);s="";
+                                     x6=u[hh][0]+300;
+                                      y6=u[hh][1]+300;
+                                     x3=vn[hh][0]+300;
+                                     y3=vn[hh][1]+300;
+                                 }
+                            }
+                            if(qq==1)
+                            {
+                                if(ss==0)
+                                {
+                                    int hh=Integer.parseInt(s);
+                                    x4=u[hh][0]+300;
+                                     y4=u[hh][1]+300;
+                                     x1=vn[hh][0]+300;
+                                    y1=vn[hh][1]+300;
+                                    s="";
+                                }
+                                if(ss==1)
+                                {
+                                    int hh=Integer.parseInt(s);
+                                     x5=u[hh][0]+300;
+                                    y5=u[hh][1]+300;
+                                     x2=vn[hh][0]+300;
+                                    y2=vn[hh][1]+300;
+                                    s="";
+                                }
+                                if(ss==2)
+                                {
+                                    int hh=Integer.parseInt(s);s="";
+                                    x6=u[hh][0]+300;
+                                    y6=u[hh][1]+300;
+                                     x3=vn[hh][0]+300;
+                                     y3=vn[hh][1]+300;
+                                }
+                            }
+                            if(qq==2)
+                            {
+                                if(ss==0)
+                                {
+                                    int hh=Integer.parseInt(s);s="";
+                                     x4=u[hh][0]+300;
+                                     y4=u[hh][1]+300;
+
+                                     x1=vn[hh][0]+300;
+                                     y1=vn[hh][1]+300;
+                                }
+                                if(ss==1)
+                                {
+                                    int hh=Integer.parseInt(s);s="";
+                                   x5=u[hh][0]+300;
+                                     y5=u[hh][1]+300;
+                                     x2=vn[hh][0]+300;
+                                     y2=vn[hh][1]+300;
+                                }
+                                if(ss==2)
+                                {
+                                    int hh=Integer.parseInt(s);s="";
+                                     x6=u[hh][0]+300;
+                                     y6=u[hh][1]+300;
+                                    x3=vn[hh][0]+300;
+                                     y3=vn[hh][1]+300;
+                                }
                             }
                             qq=qq+1;
                         }
@@ -154,20 +236,8 @@ int k=0;
                             qq=0;
                         }
                     }
-                    int hh=ff[0];
 
-                    double x4=u[hh][0]+300;
-                    double y4=u[hh][1]+300;
-                     hh=ff[1];
-
-                    double x5=u[hh][0]+300;
-                    double y5=u[hh][1]+300;
-                     hh=ff[2];
-
-                    double x6=u[hh][0]+300;
-                    double y6=u[hh][1]+300;
-
-                    Render.renderTriangle(img, x4, y4, x5, y5, x6,y6);
+                    Render.renderTriangle(img, x4, y4, x5, y5, x6,y6,x1,y1,x2,y2,x3,y3);
                 }
             }
 
@@ -178,7 +248,7 @@ int k=0;
       //  Render.renderTriangle(img, 1366, 500, 500, 300, 400,400);
 
 
-        System.out.println();
+        System.out.println("=============================");
         //Создаем буффер в который рисуем кадр.
 
 
