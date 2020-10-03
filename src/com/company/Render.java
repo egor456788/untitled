@@ -8,30 +8,27 @@ public class Render {
 
 
     //Стоит начать с этого
-    public static void renderTriangle(BufferedImage img, double x1, double y1, double x2, double y2, double x3, double y3,double x4, double y4, double x5, double y5, double x6, double y6) {
+    public static void renderTriangle(BufferedImage img, double x1, double y1, double x2, double y2, double x3, double y3, double l[], double o[], double p[]) {
         {
             for (int i = 0; i < img.getWidth(); i++) {
                 for (int j = 0; j < img.getHeight(); j++) {
                     double A = (x1-i)*(y2-y1)-(x2-x1)*(y1-j);
                     double B = (x2-i)*(y3-y2)-(x3-x2)*(y2-j);
                     double C = (x3-i)*(y1-y3)-(x1-x3)*(y3-j);
-                    A=A/C;
-                    B=B/C;
-                    C=1-A-B;
-
-                    if(0<A  && 1>A && 0<B && 1>B && 0<C && 1>C){
-                       // System.out.println(i +" "+j);
-                        img.setRGB(i, j, new Color(198, 57, 57).getRGB());
+                   
+                    if(Math.signum(A)==Math.signum(B) && Math.signum(B)==Math.signum(C)){
+                            img.setRGB(i, j, new Color(0, 0, 0).getRGB());
                     }
                     if((A==0)&&(B==0)&&(C==0)){
-                       // System.out.println(i +" "+j+" p");
-                        img.setRGB(i, j, new Color(0, 0, 0).getRGB());
+                            img.setRGB(i, j, new Color(0, 0, 0).getRGB());
                     }
                 }
             }
         }
     }
-
+   // int a=(int) (A/C*255);
+    //int b=(int) (B/C*255);
+    //int c=(int) ((1-A/C-B/C)*255);
     public static double [] vectors(int x[], double y[]) {
 
         double z[] = new double[3];
@@ -66,16 +63,12 @@ public class Render {
                     for (int i = x2; i < x1; i++) {
                         int y = ((x1-i)*(y1-y2)/(x1-x2)+y1);
                         img.setRGB(i,y,Color.BLACK.getRGB());
-
-
                     }
                 } else {
                     for (int i = y2; i < y1; i++) {
                         int x = ((y1-i)*(x1-x2))/(y1 - y2)+x1;
                         img.setRGB(x,i,Color.BLACK.getRGB());
-
                     }
-
                 }
             }
             else {
@@ -83,14 +76,11 @@ public class Render {
                     for (int i = x2; i < x1; i++) {
                         int y = ((x1-i)*(y1-y2)/(x1-x2)+y1);
                         img.setRGB(i,y,Color.BLACK.getRGB());
-
-
                     }
                 } else {
                     for (int i = y1; i < y2; i++) {
                         int x = ((y1-i)*(x2-x1))/(y1 - y2)+x1;
                         img.setRGB(x,i,Color.BLACK.getRGB());
-
                     }
             }
             }
@@ -101,16 +91,12 @@ public class Render {
                     for (int i = x1; i < x2; i++) {
                         int y = (i-x1)*(y2-y1)/(x1-x2)+y1;
                         img.setRGB(i,y,Color.BLACK.getRGB());
-
                     }
                 } else {
                     for (int i = y1; i < y2; i++) {
                         int x = ((y1-i)*(x2-x1))/(y1 - y2)+x1;
-
                         img.setRGB(x, i,Color.BLACK.getRGB());
-
                     }
-
                 }
             }
             else {
@@ -124,10 +110,8 @@ public class Render {
                     for (int i = y2; i < y1; i++) {
                         int x = ((y1-i)*(x1-x2))/(y1 - y2)+x1;
                         img.setRGB(x,i,Color.BLACK.getRGB());
-
                     }
             }
             }
             }
             }*/
-
