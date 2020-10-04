@@ -8,7 +8,7 @@ public class Render {
 
 
     //Стоит начать с этого
-    public static void renderTriangle(BufferedImage img, double x1, double y1, double x2, double y2, double x3, double y3, double l[], double o[], double p[]) {
+    public static void renderTriangle(BufferedImage img, double x1, double y1, double x2, double y2, double x3, double y3) {
         {
             for (int i = 0; i < img.getWidth(); i++) {
                 for (int j = 0; j < img.getHeight(); j++) {
@@ -18,9 +18,11 @@ public class Render {
                    
                     if(Math.signum(A)==Math.signum(B) && Math.signum(B)==Math.signum(C)){
                             img.setRGB(i, j, new Color(0, 0, 0).getRGB());
+
                     }
                     if((A==0)&&(B==0)&&(C==0)){
                             img.setRGB(i, j, new Color(0, 0, 0).getRGB());
+
                     }
                 }
             }

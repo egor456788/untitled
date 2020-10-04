@@ -70,6 +70,7 @@ public class Main extends JFrame {
         double yn[]=new double[3];
         double zn[]=new double[3];
         for(String l : readUsingScanner(fileName)) {
+
             k++;
             l.split(" ");
             if (l.length() != 0) {
@@ -123,14 +124,11 @@ public class Main extends JFrame {
 
                 }
                 if (l.charAt(0) == 'f' && l.charAt(1) == ' ') {
-
-
-                    }
                     kk = kk + 1;
                     String s = "";
                     int qq = 0;
                     int ss = 0;
-                    kkk = kkk + 1;
+
                     for (int i = 2; i < l.length(); i++) {
 
                         if (l.charAt(i) != ' ' && l.charAt(i) != '/') {
@@ -213,17 +211,14 @@ public class Main extends JFrame {
                             qq = qq + 1;
 
                         }
-                    double t[]= new double[3];
+                        double t[]= new double[3];
                         double p[]= new double[3];
                         double o[]= new double[3];
-                        t= Render.vectorm(x,xn);
-                        o= Render.vectorm(y,yn);
-                        p= Render.vectorm(z,zn);
-                        Render.renderTriangle(img, x[0],y[0],x[1],y[1],z[1],y[1],t,o,p);
+                        System.out.println(kkk);
+                        Render.renderTriangle(img, x[0],y[0],x[1],y[1],z[0],z[1]);
+                }
                 }
             }
-
-
         }
         System.out.println("=========================");
 
