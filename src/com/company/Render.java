@@ -8,20 +8,50 @@ public class Render {
 
 
     //Стоит начать с этого
-    public static void renderTriangle(BufferedImage img, double x1, double y1, double x2, double y2, double x3, double y3) {
+    public static void renderTriangle(BufferedImage img, double x1, double y1, double x2, double y2, double x3, double y3,double x4,double y4,double x5,double y5,double x6,double y6) {
         {
-            for (int i = 0; i < img.getWidth(); i++) {
-                for (int j = 0; j < img.getHeight(); j++) {
+            double li[]= new double[3];
+            li[0]=786;
+            li[1]=1366;
+
+
+
+            for (int i = (int) Math.min(x1,Math.min(x2,x3)); i <Math.max(x1,Math.max(x2,x3)); i++) {
+                for (int j = (int) Math.min(y1,Math.min(y2,y3)); j <Math.max(y1,Math.max(y2,y3)); j++) {
+
                     double A = (x1-i)*(y2-y1)-(x2-x1)*(y1-j);
                     double B = (x2-i)*(y3-y2)-(x3-x2)*(y2-j);
                     double C = (x3-i)*(y1-y3)-(x1-x3)*(y3-j);
-                   
-                    if(Math.signum(A)==Math.signum(B) && Math.signum(B)==Math.signum(C)){
-                            img.setRGB(i, j, new Color(0, 0, 0).getRGB());
 
+                    if(Math.signum(A)==Math.signum(B) && Math.signum(B)==Math.signum(C)){
+                        double h1=Math.acos(((x1-i)*(x4-i) + (y1-j)*(y4-j))/(Math.sqrt((x1-i)*(x1-i)+(y1-j)*(y1-j))*Math.sqrt((x4-i)*(x4-i)+(y4-j)*(y4-j))));
+                        double h2=Math.acos(((x2-i)*(x5-i) + (y2-j)*(y5-j))/(Math.sqrt((x2-i)*(x2-i)+(y2-j)*(y2-j))*Math.sqrt((x5-i)*(x5-i)+(y5-j)*(y5-j))));
+                        double h3=Math.acos(((x3-i)*(x6-i) + (y3-j)*(y6-j))/(Math.sqrt((x3-i)*(x3-i)+(y3-j)*(y3-j))*Math.sqrt((x5-i)*(x5-i)+(y6-j)*(y6-j))));
+                        double h4=h1*h2*h3;
+
+                        //double h4=Math.acos(((x1-i)*(li[0]-i) + (y1-j)*(li[1]-j))/(Math.sqrt((i-li[0])*(i-li[0])+(j-li[1])*(j-li[1]))*Math.sqrt((i-x1)*(i-x1)+(j-y1)*(j-y1))))*Math.acos(((x2-i)*(li[0]-i) + (y2-j)*(li[1]-j))/(Math.sqrt((i-li[0])*(i-li[0])+(j-li[1])*(j-li[1]))*Math.sqrt((i-x2)*(i-x2)+(j-y2)*(j-y2))))*Math.acos(((x3-i)*(li[0]-i) + (y3-j)*(li[1]-j))/(Math.sqrt((i-li[0])*(i-li[0])+(j-li[1])*(j-li[1]))*Math.sqrt((i-x3)*(i-x3)+(j-y3)*(j-y3))));
+                        //System.out.println(h4);
+                       if(h4>0 && h4<1) {
+
+                            img.setRGB(i, j, new Color((int) (h4 * 255), (int) (h4 * 255), (int) (h4 * 255)).getRGB());
+                        }
+                        else
+                            img.setRGB(i, j, new Color(210, 62, 62).getRGB());
                     }
                     if((A==0)&&(B==0)&&(C==0)){
-                            img.setRGB(i, j, new Color(0, 0, 0).getRGB());
+                        double h1=Math.acos(((x1-i)*(x4-i) + (y1-j)*(y4-j))/(Math.sqrt((x1-i)*(x1-i)+(y1-j)*(y1-j))*Math.sqrt((x4-i)*(x4-i)+(y4-j)*(y4-j))));
+                        double h2=Math.acos(((x2-i)*(x5-i) + (y2-j)*(y5-j))/(Math.sqrt((x2-i)*(x2-i)+(y2-j)*(y2-j))*Math.sqrt((x5-i)*(x5-i)+(y5-j)*(y5-j))));
+                        double h3=Math.acos(((x3-i)*(x6-i) + (y3-j)*(y6-j))/(Math.sqrt((x3-i)*(x3-i)+(y3-j)*(y3-j))*Math.sqrt((x5-i)*(x5-i)+(y6-j)*(y6-j))));
+                        double h4=h1*h2*h3;
+
+                      //  double h4=Math.acos(((x1-i)*(li[0]-i) + (y1-j)*(li[1]-j))/(Math.sqrt((i-li[0])*(i-li[0])+(j-li[1])*(j-li[1]))*Math.sqrt((i-x1)*(i-x1)+(j-y1)*(j-y1))))*Math.acos(((x2-i)*(li[0]-i) + (y2-j)*(li[1]-j))/(Math.sqrt((i-li[0])*(i-li[0])+(j-li[1])*(j-li[1]))*Math.sqrt((i-x2)*(i-x2)+(j-y2)*(j-y2))))*Math.acos(((x3-i)*(li[0]-i) + (y3-j)*(li[1]-j))/(Math.sqrt((i-li[0])*(i-li[0])+(j-li[1])*(j-li[1]))*Math.sqrt((i-x3)*(i-x3)+(j-y3)*(j-y3))));
+                       // System.out.println(h4);
+                        if(h4>0 && h4<1)
+                            img.setRGB(i, j, new Color((int) (h4 * 255), (int) (h4 * 255), (int) (h4 * 255)).getRGB());
+//
+                        else
+                            img.setRGB(i, j, new Color(210, 63, 63).getRGB());
+
 
                     }
                 }

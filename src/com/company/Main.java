@@ -61,37 +61,126 @@ public class Main extends JFrame {
         double vt[][] = new double[1000][3];
         double f[][]= new double[1000][3];
         int ff[]=new int [3];
-        int kk=0;
-        int kkk=0;
-        double z[]=new double[3];
-        double x[]= new double [3];
-        double y[]= new double [3];
-        double xn[]= new double[3];
-        double yn[]=new double[3];
-        double zn[]=new double[3];
-        for(String l : readUsingScanner(fileName)) {
 
+        int kk=0;
+        for(String l : readUsingScanner(fileName)){
             k++;
             l.split(" ");
-            if (l.length() != 0) {
-                if (l.charAt(0) == 'v' && l.charAt(1) == ' ') {
-                    kk = kk + 1;
-                    String s = "";
-                    int qq = 0;
-                    for (int i = 2; i < l.length(); i++) {
-                        if (l.charAt(i) != ' ') {
-                            s = s + l.charAt(i);
-                        } else {
-                            u[kk][qq] = Double.parseDouble(s);
-                            s = "";
-                            qq = qq + 1;
+
+            if(l.length()!=0) {
+                if (l.charAt(0) == 'v' && l.charAt(1)==' ') {
+                    kk=kk+1;
+                    String s="";
+                    int qq=0;
+                    for(int i=2;i<l.length();i++)
+                    {
+                        if(l.charAt(i)!=' ')
+                        {
+                            s=s+l.charAt(i);
+                        }
+                        else
+                        {
+                            u[kk][qq]=Double.parseDouble(s);
+                            s="";
+                            qq=qq+1;
                         }
                     }
-                    u[kk][qq] = Double.parseDouble(s);
-                    s = "";
-                    qq = qq + 1;
+                    u[kk][qq]=Double.parseDouble(s);
+                    s="";
+                    qq=qq+1;
                 }
-                if (l.charAt(0) == 'v' && l.charAt(1) == 't') {
+
+                if (l.charAt(0) == 'v' && l.charAt(1)=='t') {
+                    kk=0;
+                    String s="";
+                    int qq=0;
+                    for(int i=3;i<l.length();i++)
+                    {
+                        if(l.charAt(i)!=' ')
+                        {
+                            s=s+l.charAt(i);
+                        }
+                        else
+                        {
+                            vt[i][qq]=Double.parseDouble(s);
+                            s="";
+
+                            qq=qq+1;
+                        }
+                    }
+
+                }
+                if (l.charAt(0) == 'v' && l.charAt(1)=='n') {
+
+                    String s="";
+                    int qq=0;
+                    for(int i=3;i<l.length();i++)
+                    {
+                        if(l.charAt(i)!=' ')
+                        {
+                            s=s+l.charAt(i);
+                        }
+                        else
+                        {
+                            vn[i][qq]=Double.parseDouble(s);
+                            s="";
+
+                            qq=qq+1;
+                        }
+                    }
+
+                }
+                if (l.charAt(0) == 'f' && l.charAt(1)==' ') {
+                    kk=kk+1;
+                    String s="";
+                    int qq=0;
+                    int ss=0;
+                    for(int i=2;i<l.length();i++)
+                    {
+
+                        if(l.charAt(i)!=' ' && l.charAt(i)!='/')
+                        {
+                            s=s+l.charAt(i);
+                        }
+                        if(l.charAt(i)=='/')
+                        {
+                            if(qq==0) {
+                                ff[ss] = Integer.parseInt(s);
+                            }
+                            qq=qq+1;
+                        }
+                        if(l.charAt(i)==' ') {
+                            ss = ss + 1;
+                            s="";
+                            qq=0;
+                        }
+                    }
+                    int hh=ff[0];
+                    double x1=vt[hh][0]+300;
+                    double y1=vt[hh][1]+300;
+                    double x4=u[hh][0]+300;
+                    double y4=u[hh][1]+300;
+                    hh=ff[1];
+                    double x2=vt[hh][0]+300;
+                    double y2=vt[hh][1]+300;
+                    double x5=u[hh][0]+300;
+                    double y5=u[hh][1]+300;
+                    hh=ff[2];
+                    double x3=vt[hh][0]+300;
+                    double y3=vt[hh][1]+300;
+                    double x6=u[hh][0]+300;
+                    double y6=u[hh][1]+300;
+
+                    Render.renderTriangle(img, x4, y4, x5, y5, x6,y6,x1,y1,x2,y2,x3,y3);
+                }
+            }
+        }
+
+
+        //  Render.renderTriangle(img, 1366, 500, 500, 300, 400,400);
+
+
+        /*if (l.charAt(0) == 'v' && l.charAt(1) == 't') {
                     kk = 0;
                     String s = "";
                     int qq = 0;
@@ -122,106 +211,21 @@ public class Main extends JFrame {
                         }
                     }
 
-                }
-                if (l.charAt(0) == 'f' && l.charAt(1) == ' ') {
-                    kk = kk + 1;
-                    String s = "";
-                    int qq = 0;
-                    int ss = 0;
+                }*/
+        /*System.out.println("=========================");
+        if (ss == 1) {
+            int hh = Integer.parseInt(s);
+            s = "";
 
-                    for (int i = 2; i < l.length(); i++) {
-
-                        if (l.charAt(i) != ' ' && l.charAt(i) != '/') {
-                            s = s + l.charAt(i);
-                        }
-                        if (l.charAt(i) == '/') {
-                            if (qq == 0) {
-                                if (ss == 0) {
-                                    int hh = Integer.parseInt(s);
-                                    s = "";
-                                    x[qq] = u[hh][0] ;
-                                    y[qq] = u[hh][1] ;
-                                    z[qq] = u[hh][2] ; }
-                                if (ss == 1) {
-                                    int hh = Integer.parseInt(s);
-                                    s = "";
-
-                                    xn[qq] = vn[hh][0] ;
-                                    yn[qq] = vn[hh][1] ;
-                                    zn[qq]= vn[hh][2] ;
-                                }
-                                if (ss == 2) {
-                                    int hh = Integer.parseInt(s);
-                                    s = "";
-
-                                }
-                                ss=ss+1;
-                            }
-                            if (qq == 1) {
-                                if (ss == 0) {
-                                    int hh = Integer.parseInt(s);
-                                    x[qq] = u[hh][0] ;
-                                    y[qq] = u[hh][1] ;
-                                    z[qq] = u[hh][2] ;
-                                    s = "";
-                                }
-                                if (ss == 1) {
-                                    int hh = Integer.parseInt(s);
-
-                                    xn[qq] = vn[hh][0] ;
-                                    yn[qq] = vn[hh][1] ;
-                                    zn[qq] = vn[hh][2];
-                                    s = "";
-                                }
-                                if (ss == 2) {
-                                    int hh = Integer.parseInt(s);
-                                    s = "";
-
-                                }
-                                ss=ss+1;
-                            }
-                            if (qq == 2) {
-                                if (ss == 0) {
-                                    int hh = Integer.parseInt(s);
-                                    s = "";
-                                    x[qq] = u[hh][0] ;
-                                    y[qq] = u[hh][1] ;
-                                    z[qq] = u[hh][2] ;
-
-                                }
-                                if (ss == 1) {
-                                    int hh = Integer.parseInt(s);
-                                    s = "";
-
-                                    xn[qq] = vn[hh][0] ;
-                                    yn[qq] = vn[hh][1] ;
-                                    zn[qq] = vn[hh][2];
-                                }
-                                if (ss == 2) {
-                                    int hh = Integer.parseInt(s);
-                                    s = "";
-
-                                }
-                            }
-                            ss = ss + 1;
-                        }
-                        if (l.charAt(i) == ' ') {
-                            ss = 0;
-                            s = "";
-                            qq = qq + 1;
-
-                        }
-                        double t[]= new double[3];
-                        double p[]= new double[3];
-                        double o[]= new double[3];
-                        System.out.println(kkk);
-                        Render.renderTriangle(img, x[0],y[0],x[1],y[1],z[0],z[1]);
-                }
-                }
-            }
+            xn[qq] = vn[hh][0] ;
+            yn[qq] = vn[hh][1] ;
+            zn[qq]= vn[hh][2] ;
         }
-        System.out.println("=========================");
+        if (ss == 2) {
+            int hh = Integer.parseInt(s);
+            s = "";
 
+        }*/
 
         //  Render.renderTriangle(img, 1366, 500, 500, 300, 400,400);
 
