@@ -68,118 +68,129 @@ public class Main extends JFrame {
             l.split(" ");
 
             if(l.length()!=0) {
-                if (l.charAt(0) == 'v' && l.charAt(1)==' ') {
-                    kk=kk+1;
-                    String s="";
-                    int qq=0;
-                    for(int i=2;i<l.length();i++)
-                    {
-                        if(l.charAt(i)!=' ')
-                        {
-                            s=s+l.charAt(i);
-                        }
-                        else
-                        {
-                            u[kk][qq]=Double.parseDouble(s);
-                            s="";
-                            qq=qq+1;
+                if (l.charAt(0) == 'v' && l.charAt(1) == ' ') {
+                    kk = kk + 1;
+                    String s = "";
+                    int qq = 0;
+                    for (int i = 2; i < l.length(); i++) {
+                        if (l.charAt(i) != ' ') {
+                            s = s + l.charAt(i);
+                        } else {
+                            u[kk][qq] = Double.parseDouble(s);
+                            s = "";
+                            qq = qq + 1;
                         }
                     }
-                    u[kk][qq]=Double.parseDouble(s);
-                    s="";
-                    qq=qq+1;
+                    u[kk][qq] = Double.parseDouble(s);
+                    s = "";
+                    qq = qq + 1;
                 }
 
-                if (l.charAt(0) == 'v' && l.charAt(1)=='t') {
-                    kk=0;
-                    String s="";
-                    int qq=0;
-                    for(int i=3;i<l.length();i++)
-                    {
-                        if(l.charAt(i)!=' ')
-                        {
-                            s=s+l.charAt(i);
-                        }
-                        else
-                        {
-                            vt[i][qq]=Double.parseDouble(s);
-                            s="";
+                if (l.charAt(0) == 'v' && l.charAt(1) == 't') {
+                    kk = 0;
+                    String s = "";
+                    int qq = 0;
+                    for (int i = 3; i < l.length(); i++) {
+                        if (l.charAt(i) != ' ') {
+                            s = s + l.charAt(i);
+                        } else {
+                            vt[i][qq] = Double.parseDouble(s);
+                            s = "";
 
-                            qq=qq+1;
+                            qq = qq + 1;
                         }
                     }
 
                 }
-                if (l.charAt(0) == 'v' && l.charAt(1)=='n') {
+                if (l.charAt(0) == 'v' && l.charAt(1) == 'n') {
 
-                    String s="";
-                    int qq=0;
-                    for(int i=3;i<l.length();i++)
-                    {
-                        if(l.charAt(i)!=' ')
-                        {
-                            s=s+l.charAt(i);
-                        }
-                        else
-                        {
-                            vn[i][qq]=Double.parseDouble(s);
-                            s="";
+                    String s = "";
+                    int qq = 0;
+                    for (int i = 3; i < l.length(); i++) {
+                        if (l.charAt(i) != ' ') {
+                            s = s + l.charAt(i);
+                        } else {
+                            vn[i][qq] = Double.parseDouble(s);
+                            s = "";
 
-                            qq=qq+1;
+                            qq = qq + 1;
                         }
                     }
 
                 }
-                if (l.charAt(0) == 'f' && l.charAt(1)==' ') {
-                    kk=kk+1;
-                    String s="";
-                    int qq=0;
-                    int ss=0;
-                    for(int i=2;i<l.length();i++)
-                    {
+                if (l.charAt(0) == 'f' && l.charAt(1) == ' ') {
+                    kk = kk + 1;
+                    String s = "";
+                    int qq = 0;
+                    int ss = 0;
+                    for (int i = 2; i < l.length(); i++) {
 
-                        if(l.charAt(i)!=' ' && l.charAt(i)!='/')
-                        {
-                            s=s+l.charAt(i);
+                        if (l.charAt(i) != ' ' && l.charAt(i) != '/') {
+                            s = s + l.charAt(i);
                         }
-                        if(l.charAt(i)=='/')
-                        {
-                            if(qq==0) {
+                        if (l.charAt(i) == '/') {
+                            if (qq == 0) {
                                 ff[ss] = Integer.parseInt(s);
                             }
-                            qq=qq+1;
+                            qq = qq + 1;
                         }
-                        if(l.charAt(i)==' ') {
+                        if (l.charAt(i) == ' ') {
                             ss = ss + 1;
-                            s="";
-                            qq=0;
+                            s = "";
+                            qq = 0;
                         }
                     }
-                    int hh=ff[0];
-                    double x1=vt[hh][0]+300;
-                    double y1=vt[hh][1]+300;
-                    double x4=u[hh][0]+300;
-                    double y4=u[hh][1]+300;
-                    hh=ff[1];
-                    double x2=vt[hh][0]+300;
-                    double y2=vt[hh][1]+300;
-                    double x5=u[hh][0]+300;
-                    double y5=u[hh][1]+300;
-                    hh=ff[2];
-                    double x3=vt[hh][0]+300;
-                    double y3=vt[hh][1]+300;
-                    double x6=u[hh][0]+300;
-                    double y6=u[hh][1]+300;
+                    int hh = ff[0];
+                    double x1 = vt[hh][0] + 300;
+                    double y1 = vt[hh][1] + 300;
+                    double x4 = u[hh][0] + 300;
+                    double y4 = u[hh][1] + 300;
+                    hh = ff[1];
+                    double x2 = vt[hh][0] + 300;
+                    double y2 = vt[hh][1] + 300;
+                    double x5 = u[hh][0] + 300;
+                    double y5 = u[hh][1] + 300;
+                    hh = ff[2];
+                    double x3 = vt[hh][0] + 300;
+                    double y3 = vt[hh][1] + 300;
+                    double x6 = u[hh][0] + 300;
+                    double y6 = u[hh][1] + 300;
+                  /*  double x[]=new double[4];
+                    x[0]=x1;
+                    x[1]=x2;
+                    x[2]=1;
+                    x[3]=1;
+                    double y[][]=new double[4][4];
+                    y=matrix.translation(0,0,0,180,180,180);
+                    x=Render.matrixv(y, x);
+                    x1=x[0];
+                    x2=x[1];
+                    x[0]=x1;
+                    x[1]=x2;
+                    x[2]=1;
+                    x[3]=1;
 
-                    Render.renderTriangle(img, x4, y4, x5, y5, x6,y6,x1,y1,x2,y2,x3,y3);
+                    y=matrix.translation(0,0,0,180,180,180);
+                    x=Render.matrixv(y, x);
+                    x1=x[0];
+                    x2=x[1];
+
+                    x[0]=x1;
+                    x[1]=x2;
+                    x[2]=1;
+                    x[3]=1;
+
+                    y=matrix.translation(0,0,0,180,180,180);
+                    x=Render.matrixv(y, x);
+                    x1=x[0];
+                    x2=x[1];*/
+                    Render.renderTriangle(img, x4, y4, x5, y5, x6, y6, x1, y1, x2, y2, x3, y3);
                 }
             }
         }
 
 
         //  Render.renderTriangle(img, 1366, 500, 500, 300, 400,400);
-
-
         /*if (l.charAt(0) == 'v' && l.charAt(1) == 't') {
                     kk = 0;
                     String s = "";
@@ -230,7 +241,7 @@ public class Main extends JFrame {
         //  Render.renderTriangle(img, 1366, 500, 500, 300, 400,400);
 
 
-        System.out.println();
+
         //Создаем буффер в который рисуем кадр.
 
 
