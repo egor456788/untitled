@@ -155,7 +155,7 @@ public class Main extends JFrame {
                     double y3 = vt[hh][1] + 300;
                     double x6 = u[hh][0] + 300;
                     double y6 = u[hh][1] + 300;
-                  /*  double x[]=new double[4];
+                    /*double x[]=new double[4];
                     x[0]=x1;
                     x[1]=x2;
                     x[2]=1;
@@ -185,6 +185,14 @@ public class Main extends JFrame {
                     x1=x[0];
                     x2=x[1];*/
                     Render.renderTriangle(img, x4, y4, x5, y5, x6, y6, x1, y1, x2, y2, x3, y3);
+                    double y[][]=new double[4][4];
+                    y=matrix.translation(90,90,0,180,180,180);
+                    double[] m={0,1,0,1};
+                    double[] resu=Render.matrixv(y, m);
+                    for (int i = 0; i < 4; i++) {
+                        System.out.println(resu[i]);
+                    }
+                    System.out.println("----------------------------");
                 }
             }
         }
