@@ -6,19 +6,41 @@ public class Render {
     //Стоит начать с этого
     public static void renderTriangle(BufferedImage img, double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3,double z3) {
         {
+            double zb[][]=new double[1366][786];
             double li[] = new double[3];
             li[0] = 1366;
             li[1] = 786;
+            double gl[]=new double[3];
+            gl[1]=0;
+            gl[2]=0;
+            gl[0]=0;
             double z[] = new double[3];
             z = vectorm(x1 - x2, x1 - x3, y1 - y2, y1 - y3, z1 - z2, z1 - z3);
             z = vector.normalize3D(z);
             double k[] = new double[3];
             k[0] = 1366 - x1;
             k[1] = 786 - y1;
-            k[2] = 10 - z1;
+            k[2] =1000- z1;
             k = vector.normalize3D(k);
-            double t;
-            t = k[0] * z[0] + k[1] * z[1] + k[2] * z[2];
+            double t1;
+            t1 = k[0] * z[0] + k[1] * z[1] + k[2] * z[2];
+            z = vectorm(x2 - x3, x2 - x1, y2 - y3, y2 - y1, z2 - z3, z2 - z1);
+            z = vector.normalize3D(z);
+            k[0] = 1366 - x2;
+            k[1] = 786 - y2;
+            k[2] =- z2;
+            k = vector.normalize3D(k);
+            double t2;
+            t2 = k[0] * z[0] + k[1] * z[1] + k[2] * z[2];
+            z = vectorm(x3 - x2, x3 - x2, y3 - y2, y3 - y1, z3 - z2, z3 - z1);
+            z = vector.normalize3D(z);
+            k[0] = 1366 - x3;
+            k[1] = 786 - y3;
+            k[2] =- z3;
+            k = vector.normalize3D(k);
+            double t3;
+            t3 = k[0] * z[0] + k[1] * z[1] + k[2] * z[2];
+            double t=t1*t2*t3;
             for (int i = (int) Math.max(0,Math.min(x1, Math.min(x2, x3))); i < Math.min(1366,Math.max(x1, Math.max(x2, x3))); i++) {
                 for (int j = (int) Math.max(0,Math.min(y1, Math.min(y2, y3))); j < Math.min(786,Math.max(y1, Math.max(y2, y3))); j++) {
                     double A = (x1 - i) * (y2 - y1) - (x2 - x1) * (y1 - j);
