@@ -4,23 +4,12 @@ import javax.swing.*;
 
 public class matrix {
     public static double[][] translation(double al,double be,double ga, double a,double b, double c) {
-        double l[][]=new double[4][4];
-        l[0][0] = 1;
-        l[0][1] = 0;
-        l[0][2] = 0;
-        l[0][3] = 0;
-        l[1][0] = 0;
-        l[1][1] = 1;
-        l[1][2] = 0;
-        l[1][3] = 0;
-        l[2][0] = 0;
-        l[2][1] = 0;
-        l[2][2] = 1;
-        l[2][3] = 0;
-        l[3][0] = 0;
-        l[3][1] = 0;
-        l[3][2] = 0;
-        l[3][3] = 1;
+        double l[][]={
+                {1, 0 ,0 , 0},
+                {0, 1 ,0 , 0},
+                {0, 0 ,1 , 0},
+                {0, 0 ,0 , 1},
+        };
 if(al!=0){
         double l1[][] = new double[4][4];
         l1[0][0] = 1;
