@@ -2,64 +2,40 @@ package com.company;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 public class Render {
-
     //Стоит начать с этого
-    public static void renderTriangle(BufferedImage img, double x1, double y1, double z1, double x2, double y2, double z2, double x3, double y3,double z3) {
-        {
-            double zb[][]=new double[1366][786];
-            double li[] = new double[3];
-            li[0] = 1366;
-            li[1] = 786;
-            double gl[]=new double[3];
-            gl[1]=0;
-            gl[2]=0;
-            gl[0]=0;
-            double z[] = new double[3];
-            z = vectorm(x1 - x2, x1 - x3, y1 - y2, y1 - y3, z1 - z2, z1 - z3);
-            z = vector.normalize3D(z);
-            double k[] = new double[3];
-            k[0] = 1366 - x1;
-            k[1] = 786 - y1;
-            k[2] =1000- z1;
-            k = vector.normalize3D(k);
-            double t1;
-            t1 = k[0] * z[0] + k[1] * z[1] + k[2] * z[2];
-            z = vectorm(x2 - x3, x2 - x1, y2 - y3, y2 - y1, z2 - z3, z2 - z1);
-            z = vector.normalize3D(z);
-            k[0] = 1366 - x2;
-            k[1] = 786 - y2;
-            k[2] =- z2;
-            k = vector.normalize3D(k);
-            double t2;
-            t2 = k[0] * z[0] + k[1] * z[1] + k[2] * z[2];
-            z = vectorm(x3 - x2, x3 - x2, y3 - y2, y3 - y1, z3 - z2, z3 - z1);
-            z = vector.normalize3D(z);
-            k[0] = 1366 - x3;
-            k[1] = 786 - y3;
-            k[2] =- z3;
-            k = vector.normalize3D(k);
-            double t3;
-            t3 = k[0] * z[0] + k[1] * z[1] + k[2] * z[2];
-            double t=t1*t2*t3;
-            for (int i = (int) Math.max(0,Math.min(x1, Math.min(x2, x3))); i < Math.min(1366,Math.max(x1, Math.max(x2, x3))); i++) {
-                for (int j = (int) Math.max(0,Math.min(y1, Math.min(y2, y3))); j < Math.min(786,Math.max(y1, Math.max(y2, y3))); j++) {
-                    double A = (x1 - i) * (y2 - y1) - (x2 - x1) * (y1 - j);
-                    double B = (x2 - i) * (y3 - y2) - (x3 - x2) * (y2 - j);
-                    double C = (x3 - i) * (y1 - y3) - (x1 - x3) * (y3 - j);
-                    if (Math.signum(A) == Math.signum(B) && Math.signum(B) == Math.signum(C)) {
-                        if (t < 0 || t > 1)
-                            img.setRGB(i, j, new Color(0, 0, 0).getRGB());
-                        else {
-                            img.setRGB(i, j, new Color((int) (255 * t), (int) (t * 255), (int) (t * 255)).getRGB());
-                        }
-                    }
-                    if ((A == 0) && (B == 0) && (C == 0)) {
-                        img.setRGB(i, j, new Color(0, 0, 0).getRGB());
-                    }
+    public static void renderTriangle(BufferedImage img, double x1, double y1, double x2, double y2, double x3, double y3,double z1,double z2, double z3){
+        double li[] = new double[3];
+        li[0] = 1366;
+        li[1] = 786;
+        double z[] = new double[3];
+        z = vectorm1(x1 - x2, x1 - x3, y1 - y2, y1 - y3, z1 - z2, z1 - z3);
+        z = vector.normalize3D(z);
+        double k[] = new double[3];
+        k[0] = 1366 - x1;
+        k[1] = 786 - y1;
+        k[2] = 10 - z1;
+        k = vector.normalize3D(k);
+        double t;
+        t = k[0] * z[0] + k[1] * z[1] + k[2] * z[2];
+        double AB[] = {x2-x1,y2-y1};
+        double AC[] = {x3-x1,y3-y1};
+       for (int x =(int) (Math.min(x1, Math.min(x2, x3))); x <= (int) (Math.max(x1, Math.max(x2, x3))); x++) {
+         for (int y = (int)(Math.min(y1, Math.min(y2, y3))); y < (int)(Math.max(y1, Math.max(y2, y3))); y++) {
+                double PA[] = {x1-x,y1-y};
+
+                double u1[]={AB[0],AC[0],PA[0]};
+                double u2[]={AB[1],AC[1],PA[1]};
+                double V[] = Render.vectorm2(u1,u2);
+                double u = V[0]/V[2];         double v = V[1]/V[2];
+               if (u + v <= 1 && u >= 0 && v >= 0){
+                   if(t>0)
+                    img.setRGB(x, y, new Color((int) (u*255*t), (int) (v*255*t), (int) ((1-u-v)*255*t)).getRGB());
+                   else
+                       img.setRGB(x, y, new Color(0, (int) 0, (int) 0).getRGB());
                 }
-            }
-        }
-        }
+           }
+       }
+  }
             public static double[] vectors ( int x[], double y[]){
 
                     double z[] = new double[3];
@@ -69,14 +45,22 @@ public class Render {
                     return z;
                 }
 
-                public static double[] vectorm ( double x1, double y1, double x2, double y2, double x3, double y3)
+                public static double[] vectorm2 ( double x [],double y[])
                 {
                     double z[] = new double[3];
-                    z[0] = x3 * y2 - x2 * y3;
-                    z[1] = x1 * y3 - x3 * y1;
-                    z[2] = x2 * y1 - x1 * y2;
+                    z[0] = x[2]* y[1] - x[1] * y[2];
+                    z[1] = x[0] * y[2] - x[2] * y[0];
+                    z[2] = x[1] * y[0] - x[0] * y[1];
                     return z;
                 }
+    public static double[] vectorm1 ( double x1, double y1, double x2, double y2, double x3, double y3)
+    {
+        double z[] = new double[3];
+        z[0] = x3 * y2 - x2 * y3;
+        z[1] = x1 * y3 - x3 * y1;
+        z[2] = x2 * y1 - x1 * y2;
+        return z;
+    }
                 public static double vectorsc ( double x[], double y[])
                 {
                     double z = 0;

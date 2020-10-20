@@ -1,6 +1,5 @@
 package com.company;
 
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -166,7 +165,7 @@ public class Main extends JFrame {
                     double x6=u[hh][0]+300;
                     double y6=u[hh][1]+300;
                     double z6=u[hh][2]+300;
-                    Render.renderTriangle(img, x4, y4, z4,x5, y5, z5, x6,y6,z6);
+                    Render.renderTriangle(img, x4, y4,x5, y5,  x6,y6,z4,z5,z6);
                 }
             }
         }
