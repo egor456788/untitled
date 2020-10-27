@@ -1,5 +1,4 @@
 package com.company;
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -30,7 +29,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-//import java.awt.*;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
@@ -38,11 +37,7 @@ public class Main extends JFrame {
 
     private static List<String> readUsingScanner(String fileName) throws IOException {
         return Files.readAllLines(Paths.get(fileName));
-//        Scanner scanner = new Scanner(, StandardCharsets.UTF_8.name());
-//        здесь мы можем использовать разделитель, например: "\\A", "\\Z" или "\\z"
-//        String data = scanner.useDelimiter("\\A").next();
-//        scanner.close();
-//        return data;
+
 
     }
     static final int w = 1366;
@@ -51,23 +46,28 @@ public class Main extends JFrame {
     public static void draw(Graphics2D g) throws IOException {
         String fileName= "/Users/Admin/Desktop/rer.txt";
         BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-
-//        String s="0";
-//        s= readUsingScanner(fileName);
         int k=0;
         double u[][] = new double[1000][3];
         double vn[][] = new double[1000][3];
         double vt[][] = new double[1000][3];
         double f[][]= new double[1000][3];
         int ff[]=new int [3];
+        int yy[]=new int [3];
         int kk=0;
+        int uu=0;
+        double[][] zBuffer=new double[1366][786];
+        for(int i=0; i<1366; i++){
+            for (int j = 0; j < 786; j++) {
+                zBuffer[i][j]=10000000;
+            }
+        }
+        int oo=0;
         for(String l : readUsingScanner(fileName)){
-            k++;
-            l.split(" ");
 
+            l.split(" ");
             if(l.length()!=0) {
                 if (l.charAt(0) == 'v' && l.charAt(1)==' ') {
-                    kk=kk+1;
+                    kk++;
                     String s="";
                     int qq=0;
                     for(int i=2;i<l.length();i++)
@@ -84,12 +84,10 @@ public class Main extends JFrame {
                         }
                     }
                     u[kk][qq]=Double.parseDouble(s);
-                    s="";
-                    qq=qq+1;
-                }
 
+                }
                 if (l.charAt(0) == 'v' && l.charAt(1)=='t') {
-                    kk=0;
+                    uu++;
                     String s="";
                     int qq=0;
                     for(int i=3;i<l.length();i++)
@@ -100,18 +98,18 @@ public class Main extends JFrame {
                         }
                         else
                         {
-                            vt[i][qq]=Double.parseDouble(s);
+                            vt[uu][qq]=Double.parseDouble(s);
                             s="";
-
                             qq=qq+1;
                         }
                     }
-
+                    vt[uu][qq]=Double.parseDouble(s);
                 }
                 if (l.charAt(0) == 'v' && l.charAt(1)=='n') {
-
+                    oo++;
                     String s="";
                     int qq=0;
+                    kk=0;
                     for(int i=3;i<l.length();i++)
                     {
                         if(l.charAt(i)!=' ')
@@ -120,22 +118,21 @@ public class Main extends JFrame {
                         }
                         else
                         {
-                            vn[i][qq]=Double.parseDouble(s);
+                            vn[oo][qq]=Double.parseDouble(s);
                             s="";
-
                             qq=qq+1;
                         }
                     }
+                    vn[oo][qq]=Double.parseDouble(s);
 
                 }
                 if (l.charAt(0) == 'f' && l.charAt(1)==' ') {
-                    kk=kk+1;
                     String s="";
                     int qq=0;
                     int ss=0;
+                    l=l+" ";
                     for(int i=2;i<l.length();i++)
                     {
-
                         if(l.charAt(i)!=' ' && l.charAt(i)!='/')
                         {
                             s=s+l.charAt(i);
@@ -144,43 +141,52 @@ public class Main extends JFrame {
                         {
                             if(qq==0) {
                                 ff[ss] = Integer.parseInt(s);
+                                s="";
+                            }
+                            if (qq==1) {
+                                s = "";
                             }
                             qq=qq+1;
                         }
                         if(l.charAt(i)==' ') {
+                            yy[ss]= Integer.parseInt(s);
                             ss = ss + 1;
                             s="";
                             qq=0;
                         }
                     }
                     int hh=ff[0];
-                    double x4=u[hh][0]+300;
-                    double y4=u[hh][1]+300;
-                    double z4=u[hh][2]+300;
+                    double x4=u[hh][0];
+                    double y4=u[hh][1];
+                    double z4=u[hh][2];
+
+                    hh=yy[0];
+
+                    double x1=vn[hh][0];
+                    double y1=vn[hh][1];
+                    double z1=vn[hh][2];
+
                     hh=ff[1];
-                    double x5=u[hh][0]+300;
-                    double y5=u[hh][1]+300;
-                    double z5=u[hh][2]+300;
+                    double x5=u[hh][0];
+                    double y5=u[hh][1];
+                    double z5=u[hh][2];
+                    hh=yy[1];
+                    double x2=vn[hh][0];
+                    double y2=vn[hh][1];
+                    double z2=vn[hh][2];
                     hh=ff[2];
-                    double x6=u[hh][0]+300;
-                    double y6=u[hh][1]+300;
-                    double z6=u[hh][2]+300;
-                    Render.renderTriangle(img, x4, y4,x5, y5,  x6,y6,z4,z5,z6);
+                    double x6=u[hh][0];
+                    double y6=u[hh][1];
+                    double z6=u[hh][2];
+                    hh=yy[2];
+                    double x3=vn[hh][0];
+                    double y3=vn[hh][1];
+                    double z3=vn[hh][2];
+
+                    Render.renderTriangle(img, x4, y4,x5, y5,  x6,y6,z4,z5,z6,x1,y1,z1,x2,y2,z2,x3,y3,z3,zBuffer);
                 }
             }
         }
-
-
-        //  Render.renderTriangle(img, 1366, 500, 500, 300, 400,400);
-
-
-        System.out.println();
-        //Создаем буффер в который рисуем кадр.
-
-
-        //Рисуем кадр.
-
-
         g.drawImage(img, 0, 0, null);
     }
 
@@ -215,7 +221,6 @@ public class Main extends JFrame {
         }
 
     }
-
     public void keyTyped(KeyEvent e) {
     }
 
